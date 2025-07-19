@@ -1,0 +1,70 @@
+
+
+
+/* Event container layout */
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+    margin-top: 20px;
+}
+
+/* Event poster styling */
+.event-poster {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.event-poster:hover {
+    transform: translateY(-10px);
+}
+
+/* Adjust the poster to show full image */
+.poster {
+    width: 100%;
+    height: auto; /* Remove fixed height */
+    max-height: 200px; /* Set a max height to keep card size consistent */
+    object-fit: contain; /* Show full image without cropping */
+}
+
+/* Event details */
+.event-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.event-details h3 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.event-details p {
+    font-size: 1.1em;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+/* Button styling */
+.event-details button {
+    background-color: #ff7f50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.event-details button:hover {
+    background-color: #ff6347;
+}
+
+

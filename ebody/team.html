@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's Team</title>
+    <link href="../img/logo.png" rel="icon" type="image/png">
+    <style>
+      body {
+          background-image: url('img/teamBG.jpg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 100vh;
+          font-family: 'Arial', sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .team-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 30px;
+          padding: 20px;
+      }
+
+      .team-card {
+          position: relative;
+          overflow: hidden;
+          border-radius: 25px;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          background-color: #1e4246;
+          height: auto;
+          width: 269px;
+          text-align: center;
+      }
+
+      .team-card img {
+          height: 312px;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+      }
+
+      .team-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .team-card .info {
+          padding: 10px 0;
+      }
+
+      .info h3 {
+          font-size: 1.25rem;
+          font-weight: bold;
+      }
+
+      .info p {
+          font-size: 0.875rem;
+          color: #fff;
+      }
+
+      .social-icons {
+          margin-top: 10px;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+      }
+
+      .social-icons a {
+          color: rgb(40, 149, 238);
+          font-size: 20px;
+          transition: color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+          color: #f97316;
+      }
+
+      @media (max-width: 640px) {
+          .team-card {
+              width: 220px;
+          }
+
+          .team-card img {
+              height: 270px;
+          }
+      }
+
+      @media (min-width: 641px) and (max-width: 1023px) {
+          .team-card {
+              width: 240px;
+          }
+
+          .team-card img {
+              height: 290px;
+          }
+      }
+
+      @media (min-width: 1024px) {
+          .team-card img {
+              height: 312px;
+          }
+      }
+    </style>
+</head>
+<body>
+    <div class="team-container">
+        <!-- Team Member 1 -->
+        <div class="team-card">
+          <img src="img/sanjeev.png" alt="SANJEEV K VIBHAKAR">
+          <div class="info">
+            <h3>SANJEEV K VIBHAKAR</h3>
+            <p>Full-Stack Developer</p>
+            <div class="social-icons">
+              <a href="#" class="fab fa-instagram"></a>
+              <a href="#" class="fab fa-linkedin"></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card">
+          <img src="https://surveyheartmedia.s3.ap-south-1.amazonaws.com/files/b12e2a7c25c92fd84fa8c51904e8f0/66ba4213e50d8610345b7400/sh_1723745924105.jpg" alt="DURGESH KUMAR">
+          <div class="info">
+            <h3>DURGESH KUMAR</h3>
+            <p>Full-Stack Developer</p>
+            <div class="social-icons">
+              <a href="#" class="fab fa-instagram"></a>
+              <a href="#" class="fab fa-linkedin"></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card">
+          <img src="img/Priyanka.jpg" alt="PRIYANKA PRAJAPATI">
+          <div class="info">
+            <h3>PRIYANKA PRAJAPATI</h3>
+            <p>Frontend Developer</p>
+            <div class="social-icons">
+              <a href="#" class="fab fa-instagram"></a>
+              <a href="#" class="fab fa-linkedin"></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-card">
+          <img src="img/darshana.jpeg" alt="DARSHANA BORTHAKUR">
+          <div class="info">
+            <h3>DARSHANA BORTHAKUR</h3>
+            <p>Frontend Developer</p>
+            <div class="social-icons">
+              <a href="#" class="fab fa-instagram"></a>
+              <a href="#" class="fab fa-linkedin"></a>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scores</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp1850875.png');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.8);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-cover bg-no-repeat font-sans h-screen flex flex-col items-center justify-center">
+
+    <!-- Main Menu -->
+    <div id="menu" class="text-center">
+        <h2 class="text-6xl font-italic text-white mb-10">EVENT</h2>
+
+        <div class="flex justify-center space-x-4">
+
+            <!-- Block Event Button -->
+            <button class="bg-purple-500 text-white px-8 py-4 rounded hover:bg-purple-600 text-2xl"
+                onclick="showTable('block')">Block Event</button>
+
+            <!-- Individual Event Button -->
+            <button class="bg-purple-500 text-white px-8 py-4 rounded hover:bg-purple-600 text-2xl"
+                onclick="showTable('individual')">Individual Event</button>
+
+            <!-- Block Score Button -->
+            <button class="bg-purple-500 text-white px-8 py-4 rounded hover:bg-purple-600 text-2xl"
+                onclick="showTable('blockScore')">Block Score</button>
+        </div>
+    </div>
+
+    <!-- Block Events Table -->
+    <div id="block-events" class="container mx-auto mt-10 p-4 hidden">
+        <h2 class="text-center text-3xl font-bold text-white mb-10">Block Event</h2>
+
+        <div class="overflow-x-auto bg-opacity-50 rounded-lg p-6">
+            <table class="table-auto w-full text-center bg-gray-800 text-white rounded-lg">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2">Event</th>
+                        <th class="px-4 py-2">Winner</th>
+                        <th class="px-4 py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="block-table-body">
+                    <!-- Data will be inserted dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-8 text-center">
+            <input type="text" id="blockName" class="px-4 py-2 border rounded" placeholder="Event Name">
+            <input type="text" id="blockWinner" class="px-4 py-2 border rounded" placeholder="Block Name">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                onclick="authenticateAndAddScore('block')">Add Winner</button>
+        </div>
+    </div>
+
+    <!-- Individual Events Table -->
+    <div id="individual-events" class="container mx-auto mt-10 p-4 hidden">
+        <h2 class="text-center text-3xl font-bold text-white mb-10">Individual Event</h2>
+
+        <div class="overflow-x-auto bg-opacity-50 rounded-lg p-6">
+            <table class="table-auto w-full text-center bg-gray-800 text-white rounded-lg">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2">Event</th>
+                        <th class="px-4 py-2">Winner</th>
+                        <th class="px-4 py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="individual-table-body">
+                    <!-- Data will be inserted dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-8 text-center">
+            <input type="text" id="individualName" class="px-4 py-2 border rounded" placeholder="Event Name">
+            <input type="text" id="individualWinner" class="px-4 py-2 border rounded" placeholder="Winner Name">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                onclick="authenticateAndAddScore('individual')">Add Winner</button>
+        </div>
+    </div>
+
+    <!-- Block Score Table -->
+    <div id="block-score" class="container mx-auto mt-10 p-4 hidden">
+        <h2 class="text-center text-3xl font-bold text-white mb-10">Block Score</h2>
+
+        <div class="overflow-x-auto bg-opacity-50 rounded-lg p-6">
+            <table class="table-auto w-full text-center bg-gray-800 text-white rounded-lg">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2">Block</th>
+                        <th class="px-4 py-2">Score</th>
+                        <th class="px-4 py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="block-score-body">
+                    <!-- Data will be inserted dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-8 text-center">
+            <input type="text" id="blockNameScore" class="px-4 py-2 border rounded" placeholder="Block Name">
+            <input type="text" id="blockScore" class="px-4 py-2 border rounded" placeholder="Score">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                onclick="authenticateAndAddScore('blockScore')">Update Score</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for handling event selection, background change, and score updates with localStorage -->
+    <script>
+        const correctPassword = 'admin123'; // Ideally, this should be stored securely on the server.
+
+        function showTable(type) {
+            // Hide all tables first
+            document.getElementById('block-events').classList.add('hidden');
+            document.getElementById('individual-events').classList.add('hidden');
+            document.getElementById('block-score').classList.add('hidden');
+
+            // Show the relevant table and load data from localStorage
+            if (type === 'block') {
+                document.body.style.backgroundImage = "url('https://moewalls.com/wp-content/uploads/2023/02/hogwarts-legacy-dark-version-thumb.jpg')";
+                document.getElementById('block-events').classList.remove('hidden');
+                loadTableData('block');
+            } else if (type === 'individual') {
+                document.body.style.backgroundImage = "url('https://www.wallpapertip.com/wmimgs/137-1370494_hogwarts-wallpapers-79-background-pictures-harry-potter-dementor.jpg')";
+                document.getElementById('individual-events').classList.remove('hidden');
+                loadTableData('individual');
+            } else if (type === 'blockScore') {
+                document.body.style.backgroundImage = "url('https://images6.alphacoders.com/113/1130105.jpg')";
+                document.getElementById('block-score').classList.remove('hidden');
+                loadTableData('blockScore');
+            }
+        }
+
+        function authenticateAndAddScore(type) {
+            const password = prompt('Enter password to update the score:');
+            if (password === correctPassword) {
+                if (type === 'block') {
+                    addWinner('block');
+                } else if (type === 'individual') {
+                    addWinner('individual');
+                } else if (type === 'blockScore') {
+                    addWinner('blockScore');
+                }
+            } else {
+                alert('Incorrect password!');
+            }
+        }
+
+        function addWinner(type) {
+            if (type === 'block') {
+                const event = document.getElementById('blockName').value;
+                const winner = document.getElementById('blockWinner').value;
+                if (event && winner) {
+                    updateTableAndLocalStorage(type, event, winner);
+                    document.getElementById('blockName').value = '';
+                    document.getElementById('blockWinner').value = '';
+                } else {
+                    alert('Please fill out both fields.');
+                }
+            } else if (type === 'individual') {
+                const event = document.getElementById('individualName').value;
+                const winner = document.getElementById('individualWinner').value;
+                if (event && winner) {
+                    updateTableAndLocalStorage(type, event, winner);
+                    document.getElementById('individualName').value = '';
+                    document.getElementById('individualWinner').value = '';
+                } else {
+                    alert('Please fill out both fields.');
+                }
+            } else if (type === 'blockScore') {
+                const block = document.getElementById('blockNameScore').value;
+                const score = document.getElementById('blockScore').value;
+                if (block && score) {
+                    updateTableAndLocalStorage(type, block, score);
+                    document.getElementById('blockNameScore').value = '';
+                    document.getElementById('blockScore').value = '';
+                } else {
+                    alert('Please fill out both fields.');
+                }
+            }
+        }
+
+        function updateTableAndLocalStorage(type, name, value) {
+            let data = JSON.parse(localStorage.getItem(type)) || [];
+            data.push({ name, value });
+            localStorage.setItem(type, JSON.stringify(data));
+            loadTableData(type);
+        }
+
+        function loadTableData(type) {
+            const tableBody = type === 'block' ? document.getElementById('block-table-body') :
+                type === 'individual' ? document.getElementById('individual-table-body') :
+                    document.getElementById('block-score-body');
+
+            tableBody.innerHTML = '';
+            const data = JSON.parse(localStorage.getItem(type)) || [];
+
+            data.forEach((item, index) => {
+                const newRow = `<tr>
+                                    <td class="border px-4 py-2">${item.name}</td>
+                                    <td class="border px-4 py-2">${item.value}</td>
+                                    <td class="border px-4 py-2">
+                                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                                            onclick="authenticateAndRemove('${type}', ${index})">Remove</button>
+                                    </td>
+                                </tr>`;
+                tableBody.insertAdjacentHTML('beforeend', newRow);
+            });
+        }
+
+        function authenticateAndRemove(type, index) {
+            const password = prompt('Enter password to remove this entry:');
+            if (password === correctPassword) {
+                removeEntry(type, index);
+            } else {
+                alert('Incorrect password!');
+            }
+        }
+
+        function removeEntry(type, index) {
+            let data = JSON.parse(localStorage.getItem(type)) || [];
+            data.splice(index, 1); // Remove the entry
+            localStorage.setItem(type, JSON.stringify(data));
+            loadTableData(type); // Reload the table data
+        }
+
+        // Load data when the page loads
+        window.onload = () => {
+            loadTableData('block');
+            loadTableData('individual');
+            loadTableData('blockScore');
+        };
+    </script>
+</body>
+
+</html>

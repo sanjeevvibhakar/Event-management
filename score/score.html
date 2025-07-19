@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Board</title>
+    <link href="../img/logo.png" rel="icon" type="image/png">
+    <style>
+        body {
+            background-image: url(https://images.ctfassets.net/usf1vwtuqyxm/71J6YPxNauhFABbjHpGluJ/631bd6980b0a430d5b476ef331abb2b5/release_1_hogwarts.png);
+            background-position: center;
+            font-family: 'Special Elite', cursive;
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            margin: 22px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #423d3d79;
+            border: 2px solid #272121;
+            border-radius: 10px;
+            box-shadow: 0 50px 96px rgba(0, 0, 0, 0.2);
+            padding: 19px;
+        }
+
+        h1 {
+            color: #4e4e4e;
+        }
+
+        .score-board {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .block {
+            background: linear-gradient(to bottom, #ffeb3b, #fffed7);
+            border: 2px solid #4e4e4e;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: 80%;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .trophy {
+            width: 30px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        .fire-animation {
+            animation: fire 1.5s infinite;
+        }
+
+        @keyframes fire {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); }
+        }
+
+        .magic-animation {
+            animation: magic 1.5s infinite;
+        }
+
+        @keyframes magic {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); opacity: 0.8; }
+        }
+
+        .highest {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>RACAF Score Board</h1>
+        <div class="score-board">
+            <!-- Top Three Blocks with Animation -->
+            <div class="block fire-animation highest">E1:865<img src="trophy.png" class="trophy"></div>
+            <div class="block magic-animation">D: 680<img src="trophy.png" class="trophy"></div>
+            <div class="block magic-animation">H1: 640<img src="trophy.png" class="trophy"></div>
+
+            <!-- Remaining Blocks without Animation -->
+            <div class="block">F2: 636</div>
+            <div class="block">A: 546</div>
+            <div class="block">B: 430</div>
+            <div class="block">C: 430</div>
+            <div class="block">E2: 99</div>
+            <div class="block">F1: -81</div>
+            <div class="block">H2: -740</div>
+        </div>
+    </div>
+</body>
+
+</html>

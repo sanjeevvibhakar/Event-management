@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: url('hogwarts.jpg') no-repeat center center/cover;
+    font-family: 'IM Fell English SC', serif;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay {
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+.overlay h1 {
+    font-size: 3rem;
+    animation: glow 2s infinite alternate;
+}
+
+.overlay p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.wand img {
+    width: 100px;
+    animation: wave 2s infinite ease-in-out;
+}
+
+.candles {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.candle {
+    width: 5px;
+    height: 50px;
+    background-color: #f0e68c;
+    position: relative;
+    animation: float 4s infinite ease-in-out;
+}
+
+.candle::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -2px;
+    width: 10px;
+    height: 20px;
+    background-color: yellow;
+    border-radius: 50%;
+    box-shadow: 0 0 20px yellow;
+    animation: flicker 0.1s infinite alternate;
+}
+
+/* Animations */
+@keyframes wave {
+    0% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    100% { transform: rotate(-10deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes glow {
+    0% { text-shadow: 2px 2px 10px rgba(255, 255, 0, 0.7); }
+    100% { text-shadow: 2px 2px 20px rgba(255, 255, 255, 1); }
+}
