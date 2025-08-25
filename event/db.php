@@ -1,8 +1,8 @@
 <?php
-$host = 'srv1668.hstgr.io';
-$dbname = 'u577526957_racaf';
-$username = 'u577526957_racaf';
-$password = 'Racaf#@4149';
+$host = 'db.fr-pari1.bengt.wasmernet.com';
+$dbname = 'event';
+$username = 'caa871817e3f80000075be0ff55c';
+$password = '068acaa8-7182-708c-8000-7bb7aecf5e1e';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
